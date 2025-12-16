@@ -16,7 +16,7 @@ const getEnvVars = (env = Updates.channel) => {
       WS_GRAPHQL_URL: "wss://wayloz-api-production.up.railway.app/graphql",
       SENTRY_DSN:
         configuration?.restaurantAppSentryUrl ??
-        "https://91b55f514a2c4708845789d6e79abf10@o1103026.ingest.sentry.io/6131933",
+        "https://73c7b539e27881c71e1d173a8949713f@o4510319447703552.ingest.de.sentry.io/4510544432726096",
     };
   }
   return {
@@ -28,7 +28,7 @@ const getEnvVars = (env = Updates.channel) => {
 
     SENTRY_DSN:
       configuration?.restaurantAppSentryUrl ??
-      "https://91b55f514a2c4708845789d6e79abf10@o1103026.ingest.sentry.io/6131933",
+      "https://73c7b539e27881c71e1d173a8949713f@o4510319447703552.ingest.de.sentry.io/4510544432726096",
   };
 };
 

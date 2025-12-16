@@ -19,12 +19,15 @@
         "buildType": "apk"
       },
       "env": {
-        "SENTRY_AUTH_TOKEN": "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"
+        "SENTRY_AUTH_TOKEN": "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"
       }
     },
 
     "production": {
-      "channel": "production"
+      "channel": "production",
+            "env": {
+        "SENTRY_AUTH_TOKEN": "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"
+      }
     }
   },
   "submit": {

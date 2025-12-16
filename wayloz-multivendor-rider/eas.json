@@ -17,14 +17,19 @@
       "distribution": "internal",
       "android": {
         "buildType": "apk",
-        "resourceClass": "large"
+        // "resourceClass": "large"
       },
       "env": {
-        "SENTRY_AUTH_TOKEN": "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"
+        "SENTRY_AUTH_TOKEN": "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",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true"
       }
     },
     "production": {
-      "channel": "production"
+      "channel": "production",
+         "env": {
+        "SENTRY_AUTH_TOKEN": "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",
+        "SENTRY_DISABLE_AUTO_UPLOAD": "true"
+      }
     }
   },
   "submit": {
