@@ -1,13 +1,13 @@
 {
   "expo": {
     "name": "Wayloz Store",
-    "slug": "enatega-multivendor-restaurant",
+    "slug": "wayloz-store",
     "description": "Wayloz is a starter kit food ordering app built in React Native using Expo for IOS and Android. It's made keeping good aesthetics in mind as well keeping the best coding practices in mind. Its fully customisable to easily help you in your next food delivery project. https://market.nativebase.io/view/react-native-food-delivery-backend-app",
-    "version": "1.0.62",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./lib/assets/images/icon.png",
     "assetBundlePatterns": ["**/*"],
-    "scheme": "myapp",
+    "scheme": "wayloz-store",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
@@ -37,7 +37,7 @@
     "platforms": ["ios", "android"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "multivendor.enatega.restaurant",
+      "bundleIdentifier": "com.wayloz.store",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "$(PRODUCT_NAME) uses your location for features like finding orders nearby and tracking customer orders!",
         "UIBackgroundModes": ["remote-notification"],
@@ -48,7 +48,7 @@
       }
     },
     "android": {
-      "versionCode": 62,
+      "versionCode": 1,
       "googleServicesFile": "./google-services.json",
       "permissions": [
         "BLUETOOTH",
@@ -58,7 +58,7 @@
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION"
       ],
-      "package": "multivendor.enatega.restaurant",
+      "package": "com.wayloz.store",
       "adaptiveIcon": {
         "foregroundImage": "./lib/assets/images/appIcon.png",
         "backgroundColor": "#ffffff"
@@ -66,7 +66,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "6a94161f-f21b-4ad9-8a04-c95b54ef0116"
+        "projectId": "efa6a46a-ebad-464f-88d3-9ec5f418dc4a"
       }
     },
     "experiments": {
