@@ -16,7 +16,7 @@ const getEnvVars = (env = Updates.channel) => {
       WS_GRAPHQL_URL: "wss://wayloz-api-production.up.railway.app/graphql",
       SENTRY_DSN:
         configuration?.riderAppSentryUrl ??
-        "https://e963731ba0f84e5d823a2bbe2968ea4d@o1103026.ingest.sentry.io/6135261",
+        "https://ac3ad59ecf40072afce452d658081a1b@o4510319447703552.ingest.de.sentry.io/4510544430825552",
       // GOOGLE_MAPS_KEY: 'AIzaSyBk4tvTtPaSEAVSvaao2yISz4m8Q-BeE1M',
       GOOGLE_MAPS_KEY:configuration?.googleApiKey,
       ENVIRONMENT: "production",
@@ -28,7 +28,7 @@ const getEnvVars = (env = Updates.channel) => {
       WS_GRAPHQL_URL: "wss://wayloz-api-production.up.railway.app/graphql",
     SENTRY_DSN:
       configuration?.riderAppSentryUrl ??
-      "https://e963731ba0f84e5d823a2bbe2968ea4d@o1103026.ingest.sentry.io/6135261",
+      "https://ac3ad59ecf40072afce452d658081a1b@o4510319447703552.ingest.de.sentry.io/4510544430825552",
     // GOOGLE_MAPS_KEY: 'AIzaSyBk4tvTtPaSEAVSvaao2yISz4m8Q-BeE1M',
     GOOGLE_MAPS_KEY:configuration?.googleApiKey,
     ENVIRONMENT: "development",
