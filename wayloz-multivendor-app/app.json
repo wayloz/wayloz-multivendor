@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Wayloz Multi",
-    "scheme": "enategamultivendor",
-    "version": "1.0.97",
+    "name": "Wayloz",
+    "scheme": "wayloz-customer",
+    "version": "1.0.1",
     "description": "Wayloz is a starter kit food ordering app built in React Native using Expo for IOS and Android. It's made keeping good aesthetics in mind as well keeping the best coding practices in mind. Its fully customisable to easily help you in your next food delivery project. https://market.nativebase.io/view/react-native-food-delivery-backend-app",
-    "slug": "enategamultivendor",
-    "owner": "ninjas_code",
+    "slug": "wayloz-customer",
+    "owner": "wayloz",
     "experiments": {
       "buildCacheProvider": "eas"
     },
@@ -33,10 +33,10 @@
       },
       "supportsTablet": true,
       "userInterfaceStyle": "automatic",
-      "bundleIdentifier": "com.enatega.multivendor",
+      "bundleIdentifier": "com.waylozcustomer.app",
       "icon": "./assets/icon.png",
       "config": {
-        "googleMapsApiKey": "AIzaSyCcm7_Wd7uvmC9YnYLu2JHGWPt6z1MaL1E"
+        "googleMapsApiKey": "AIzaSyCfyHI7ta50jatB_Kd71XYJUTvy4gzvE4k"
       },
       "usesAppleSignIn": true,
       "infoPlist": {
@@ -45,7 +45,7 @@
         "NSUserTrackingUsageDescription": "Allow this app to collect app-related data that can be used for tracking you or your device.",
         "CFBundleURLTypes": [
           {
-            "CFBundleURLSchemes": ["com.googleusercontent.apps.650001300965-dkji7jutv8gc5m4n7cdg3nft87sauhn7"]
+            "CFBundleURLSchemes": ["com.googleusercontent.apps.390081406826-qvpf8dhi51i1srogmp3unh58623v237q"]
           }
         ],
         "ITSAppUsesNonExemptEncryption": false
@@ -59,8 +59,8 @@
       "androidCollapsedTitle": "Wayloz Multivendor"
     },
     "android": {
-      "versionCode": 97,
-      "package": "com.enatega.multivendor",
+      "versionCode": 1,
+      "package": "com.waylozcustomer.app",
       "userInterfaceStyle": "automatic",
       "googleServicesFile": "./google-services.json",
       "splash": {
@@ -70,7 +70,7 @@
       },
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyCcm7_Wd7uvmC9YnYLu2JHGWPt6z1MaL1E"
+          "apiKey": "AIzaSyCfyHI7ta50jatB_Kd71XYJUTvy4gzvE4k"
         }
       },
       "permissions": ["android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION", "android.permission.FOREGROUND_SERVICE", "com.google.android.gms.permission.AD_ID"],
@@ -126,14 +126,14 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "331d4e5b-b12a-434a-92ec-d6d283dc0e46"
+        "projectId": "dfb4d3ab-8b1f-49db-9354-1e31a76a8fd5"
       }
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "updates": {
-      "url": "https://u.expo.dev/331d4e5b-b12a-434a-92ec-d6d283dc0e46"
+      "url": "https://u.expo.dev/dfb4d3ab-8b1f-49db-9354-1e31a76a8fd5"
     }
   }
 }
