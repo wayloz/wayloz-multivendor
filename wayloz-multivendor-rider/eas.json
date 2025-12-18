@@ -16,7 +16,7 @@
       "channel": "staging",
       "distribution": "internal",
       "android": {
-        "buildType": "apk",
+        "buildType": "apk"
         // "resourceClass": "large"
       },
       "env": {
