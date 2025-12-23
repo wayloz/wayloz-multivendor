@@ -32,7 +32,7 @@ import setupApollo from "@/lib/apollo";
 import { useApptheme } from "@/lib/context/global/theme.context";
 import { ILoginInitialValues } from "@/lib/utils/interfaces";
 import { CustomContinueButton } from "../../useable-components";
-import { set } from "lodash";
+// import { set } from "lodash";
 
 const initial: ILoginInitialValues = {
   username: "",
@@ -42,25 +42,19 @@ const initial: ILoginInitialValues = {
 const LoginScreen = () => {
   // States
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [initialValues, setInitialValues] = useState(initial);
 
   // Hooks
   const { appTheme } = useApptheme();
   const client = setupApollo();
   const { t } = useTranslation();
-  const { onLogin, creds, isLogging } = useLogin();
-  const [loading, setLoading] = useState(false);
+  const { onLogin, isLogging } = useLogin();
 
   // Handlers
   const onLoginHandler = async (creds: ILoginInitialValues) => {
-    // TODO: Implement login logic
     try {
-      setLoading(true);
       await onLogin(creds.username.toLowerCase(), creds.password);
     } catch (err: unknown) {
       console.log(err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -69,9 +63,6 @@ const LoginScreen = () => {
       client
         ?.clearStore()
         .catch((err) => console.log("Apollo clearStore error:", err));
-
-      if (!creds?.username) return;
-      setInitialValues(creds);
     } catch (err) {
       console.log("error login", err);
     }
@@ -80,9 +71,9 @@ const LoginScreen = () => {
   // Use Effect
   useEffect(() => {
     onInit();
-  }, [creds]);
+  }, []);
 
-  if (loading) {
+  if (isLogging) {
     return (
       <View className="flex-1 items-center justify-center">
         <Text>{t("Loading...")}</Text>
@@ -102,8 +93,7 @@ const LoginScreen = () => {
         // contentContainerStyle={{ height: height * 1 }}
         >
           <Formik
-            initialValues={initialValues}
-            enableReinitialize={true}
+            initialValues={initial}
             validationSchema={SignInSchema}
             onSubmit={onLoginHandler}
           >
