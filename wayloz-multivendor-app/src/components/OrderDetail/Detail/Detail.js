@@ -63,6 +63,17 @@ export default function Detail({ theme, from, orderNo, deliveryAddress, items, c
           )
         })}
       </View>
+
+      {tip > 0 && (
+        <View style={{ flexDirection: theme?.isRTL ? 'row-reverse' : 'row', justifyContent: 'space-between', alignItems: 'center', ...alignment.MTmedium, paddingHorizontal: 10 }}>
+          <TextDefault textColor={theme.gray700} H5 bolder isRTL>
+            {t('tip')}
+          </TextDefault>
+          <TextDefault textColor={theme.gray700} H5 bolder isRTL>
+            {currencySymbol}{formatNumber(tip)}
+          </TextDefault>
+        </View>
+      )}
     </View>
   )
 }
