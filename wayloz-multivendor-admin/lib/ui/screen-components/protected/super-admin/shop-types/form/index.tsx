@@ -17,7 +17,6 @@ import CustomInputSwitch from '@/lib/ui/useable-components/custom-input-switch';
 import { IAddShopTypeProps } from '@/lib/utils/interfaces';
 
 // Schema
-import { ShopTypeFormSchema } from '@/lib/utils/schema';
 
 // Formik
 import { Form, Formik } from 'formik';
@@ -34,6 +33,7 @@ import {
   MAX_SQUARE_FILE_SIZE,
   ShopTypeErrors,
 } from '@/lib/utils/constants';
+import { getShopTypeFormSchema } from '@/lib/utils/schema/shop-type';
 
 
 
@@ -50,7 +50,7 @@ export default function ShopTypesForm({
   // Initial values
   const initialValues = {
     _id: isEditing.bool ? isEditing?.data?._id : '',
-    title: isEditing.bool ? isEditing?.data?.title : '',
+    name: isEditing.bool ? isEditing?.data?.name : '',
     image: isEditing.bool ? isEditing?.data?.image : '',
     isActive: isEditing.bool ? isEditing?.data?.isActive : true,
   };
@@ -74,7 +74,7 @@ export default function ShopTypesForm({
             _id: '',
             isActive: false,
             image: '',
-            title: '',
+            name: '',
           },
         });
       },
@@ -94,7 +94,7 @@ export default function ShopTypesForm({
             _id: '',
             isActive: false,
             image: '',
-            title: '',
+            name: '',
           },
         });
       },
@@ -118,7 +118,7 @@ export default function ShopTypesForm({
             _id: '',
             isActive: false,
             image: '',
-            title: '',
+            name: '',
           },
         });
       },
@@ -138,13 +138,14 @@ export default function ShopTypesForm({
             _id: '',
             isActive: false,
             image: '',
-            title: '',
+            name: '',
           },
         });
       },
     }
   );
 
+  const validationSchema = getShopTypeFormSchema(t);
   return (
     <Sidebar
       visible={visible}
@@ -152,23 +153,23 @@ export default function ShopTypesForm({
         setVisible(false);
       }}
       position="right"
-      className="w-full sm:w-[450px]"
+      className="w-full sm:w-[450px] dark:text-white dark:bg-dark-950 border dark:border-dark-600"
     >
       <Formik
         initialValues={initialValues}
-        validationSchema={ShopTypeFormSchema}
+        validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true);
           let formData;
           if (!isEditing.bool) {
             formData = {
-              title: values.title,
+              name: values.name,
               image: values.image || 'https://placehold.co/600x400',
             };
           } else {
             formData = {
               _id: values._id,
-              title: values.title,
+              name: values.name,
               image: values.image || 'https://placehold.co/600x400',
               isActive: values.isActive || false,
             };
@@ -194,7 +195,7 @@ export default function ShopTypesForm({
               _id: '',
               image: '',
               isActive: true,
-              title: '',
+              name: '',
             },
           });
           setVisible(false);
@@ -246,16 +247,16 @@ export default function ShopTypesForm({
                   }}
                 />
                 <CustomTextField
-                  value={values.title}
+                  value={values.name}
                   name="title"
                   showLabel={true}
                   placeholder={t('Title')}
                   type="text"
-                  onChange={(e) => setFieldValue('title', e.target.value)}
+                  onChange={(e) => setFieldValue('name', e.target.value)}
                   style={{
                     borderColor: onErrorMessageMatcher(
                       'title',
-                      errors?.title,
+                      errors?.name,
                       ShopTypeErrors
                     )
                       ? 'red'
@@ -264,7 +265,7 @@ export default function ShopTypesForm({
                 />
 
                 <button
-                  className="float-end h-10 w-fit rounded-md border-gray-300 bg-black px-8 text-white"
+                  className="float-end h-10 w-fit rounded-md border dark:border-dark-600 border-gray-300 bg-black px-8 text-white"
                   disabled={
                     isSubmitting || editShopTypeLoading || createShopTypeLoading
                   }
