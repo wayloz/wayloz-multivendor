@@ -33,7 +33,6 @@ import {
   MAX_LANSDCAPE_FILE_SIZE,
   MAX_SQUARE_FILE_SIZE,
   RestaurantErrors,
-  SHOP_TYPE,
 } from '@/lib/utils/constants';
 
 // Interface
@@ -65,6 +64,7 @@ import {
 } from '@apollo/client';
 import { useTranslations } from 'next-intl';
 import CustomPhoneTextField from '@/lib/ui/useable-components/phone-input-field';
+import { useShopTypes } from '@/lib/hooks/useShopType';
 
 const initialValues: IRestaurantForm = {
   name: '',
@@ -127,6 +127,10 @@ export default function RestaurantDetails({
     update: update,
   });
 
+   const { dropdownList, loading } = useShopTypes({
+      invoke_now: true,
+      transform_to_dropdown_list: true,
+    });
   // call GET_RESTAURANTS query
 
   const cuisineResponse = useQueryGQL(GET_CUISINES, {
@@ -486,7 +490,8 @@ export default function RestaurantDetails({
                           placeholder={t('Shop Category')}
                           selectedItem={values.shopType}
                           setSelectedItem={setFieldValue}
-                          options={SHOP_TYPE}
+                          loading={loading}
+                          options={dropdownList || []}
                           showLabel={true}
                           style={{
                             borderColor: onErrorMessageMatcher(

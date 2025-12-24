@@ -21,7 +21,6 @@ import {
   ProfileErrors,
   RestaurantErrors,
   SELECTED_SHOPTYPE,
-  SHOP_TYPE,
 } from '@/lib/utils/constants';
 import { RestaurantSchema } from '@/lib/utils/schema/restaurant';
 import { EDIT_RESTAURANT, GET_CUISINES } from '@/lib/api/graphql';
@@ -42,6 +41,7 @@ import {
 } from '@/lib/utils/interfaces/cuisine.interface';
 import { useTranslations } from 'next-intl';
 import CustomPhoneTextField from '@/lib/ui/useable-components/phone-input-field';
+import { useShopTypes } from '@/lib/hooks/useShopType';
 
 export default function UpdateRestaurantDetails({
   stepperProps,
@@ -88,6 +88,12 @@ export default function UpdateRestaurantDetails({
     },
   });
 
+     const { dropdownList, loading } = useShopTypes({
+    invoke_now: true,
+    transform_to_dropdown_list: true,
+  });
+
+
   const cuisineResponse = useQueryGQL(GET_CUISINES, {
     debounceMs: 300,
   }) as IQueryResult<IGetCuisinesData | undefined, undefined>;
@@ -114,7 +120,7 @@ export default function UpdateRestaurantDetails({
       minOrder: restaurantData?.minimumOrder ?? 0,
       salesTax: restaurantData?.tax ?? 0,
       shopType:
-        SHOP_TYPE.find((type) => type.code === restaurantData?.shopType) ??
+        dropdownList?.find((type) => type.label === restaurantData?.shopType) ??
         null,
       cuisines: Array.isArray(restaurantData?.cuisines)
         ? restaurantData.cuisines.map((cuisine) => ({
@@ -413,12 +419,13 @@ export default function UpdateRestaurantDetails({
                       }}
                     />
 
-                    <CustomDropdownComponent
+                       <CustomDropdownComponent
                       name="shopType"
                       placeholder={t('Shop Category')}
                       selectedItem={values.shopType}
                       setSelectedItem={setFieldValue}
-                      options={SHOP_TYPE}
+                      options={dropdownList || []}
+                      loading={loading}
                       showLabel={true}
                       style={{
                         borderColor: onErrorMessageMatcher(
