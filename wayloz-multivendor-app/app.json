@@ -15,7 +15,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "platforms": ["ios", "android"],
     "orientation": "portrait",
@@ -26,7 +26,7 @@
       "splash": {
         "image": "./assets/splash.png",
         "resizeMode": "cover",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000000"
       },
       "entitlements": {
         "com.apple.developer.networking.wifi-info": true
@@ -66,7 +66,7 @@
       "splash": {
         "image": "./assets/splash.png",
         "resizeMode": "cover",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000000"
       },
       "config": {
         "googleMaps": {

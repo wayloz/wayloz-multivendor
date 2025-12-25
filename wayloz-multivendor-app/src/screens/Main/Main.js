@@ -357,7 +357,7 @@ function Main(props) {
                     <View style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
                       <ActivityIndicator size='large' color={currentTheme.spinnerColor} />
                     </View>
-                  ) : restaurantorders?.length > 0 ? (
+                  ) : (data?.nearByRestaurantsPreview?.restaurants?.length > 0 || restaurantorders?.length > 0) ? (
                     <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false} refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />}>
                       <Banner banners={banners?.banners} />
                       <View style={{ gap: 16 }}>
@@ -436,9 +436,19 @@ function Main(props) {
                       </View>
                       <View style={styles(currentTheme, hasActiveOrders).topBrandsMargin}>{orderLoading ? <TopBrandsLoadingUI /> : <TopBrands />}</View>
                     </ScrollView>
-                  ) : !location ? (
+                  ) : !location?.latitude || !location?.longitude ? (
                     <View style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-                      <Spinner backColor='transparent' />
+                      <TextDefault bold H4 style={{ textAlign: 'center', marginBottom: 10 }}>
+                        {t('Location Required')}
+                      </TextDefault>
+                      <TextDefault style={{ textAlign: 'center', marginBottom: 20 }}>
+                        {t('Please set your location to see nearby restaurants and stores.')}
+                      </TextDefault>
+                      <TouchableOpacity activeOpacity={0.7} onPress={setCurrentLocation} style={[styles(currentTheme).button, { opacity: 1 }]}>
+                        <TextDefault textColor={currentTheme.color4} style={{ paddingHorizontal: 10 }} bold H7>
+                          {t('Get Current Location')}
+                        </TextDefault>
+                      </TouchableOpacity>
                     </View>
                   ) : (
                     <View style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
