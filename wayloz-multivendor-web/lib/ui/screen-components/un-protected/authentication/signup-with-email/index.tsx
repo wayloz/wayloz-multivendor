@@ -195,7 +195,7 @@ export default function SignUpWithEmail({
         />
       </div>
       {/* Email Validation message */}
-      <div className={` ${isValid? `hidden`:``} h-[20px]  `}>
+      <div className={` ${isValid ? `hidden` : ``} h-[20px]  `}>
         {!isValid && (
           <p className="text-red-500 text-sm">
             {t("please_enter_valid_email_address_message")}
@@ -232,7 +232,7 @@ export default function SignUpWithEmail({
       </div>
       <CustomButton
         label={t("continue_label")}
-        className={`bg-[#5AC12F] flex items-center justify-center gap-x-4 px-3 rounded-full border border-gray-300 p-3 m-auto w-72`}
+        className={`bg-[#b83330] text-white flex items-center justify-center gap-x-4 px-3 rounded-full border border-gray-300 p-3 m-auto w-72`}
         onClick={handleSubmit}
         loading={isLoading}
       />

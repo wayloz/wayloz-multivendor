@@ -61,7 +61,7 @@ export default function GetHelpMain() {
       if (backendMessage.startsWith("Validation error:")) {
         backendMessage = backendMessage.replace("Validation error:", "").trim();
       }
-       backendMessage = backendMessage.replace(/"/g, "");
+      backendMessage = backendMessage.replace(/"/g, "");
       showToast({
         type: "error",
         title: t("toast_error"),
@@ -354,7 +354,7 @@ export default function GetHelpMain() {
                 onChange={(e) => setDescription(e.target.value)}
                 rows={4}
                 placeholder={t("describe_issue_in_detail_placeholder")}
-                className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-[#5AC12F]"
+                className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-[#B83330]"
               />
             </div>
           </div>
@@ -370,15 +370,14 @@ export default function GetHelpMain() {
                 !description.trim() ||
                 isSubmitting
               }
-              className={`bg-primary-color text-white w-full py-3 rounded-full flex items-center justify-center ${
-                !reason ||
+              className={`bg-primary-color text-white w-full py-3 rounded-full flex items-center justify-center ${!reason ||
                 (reason === "order related" && !orderId.trim()) ||
                 (reason === "others" && !ticketTitle.trim()) ||
                 !description.trim() ||
                 isSubmitting
-                  ? "opacity-70 cursor-not-allowed"
-                  : "hover:bg-primary-color"
-              }`}
+                ? "opacity-70 cursor-not-allowed"
+                : "hover:bg-primary-color"
+                }`}
             >
               {isSubmitting ? (
                 <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

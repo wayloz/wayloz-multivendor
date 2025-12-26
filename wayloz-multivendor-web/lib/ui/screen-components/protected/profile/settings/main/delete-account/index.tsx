@@ -71,54 +71,54 @@ export default function DeleteAccountDialog({
           {userName} {t("delete_account_message")}
         </p>
         <div className="w-full mb-6">
-        <Dropdown
-  value={deleteReason}
-  onChange={(e: DropdownChangeEvent) => setDeleteReason?.(e.value)}
-  options={reasonOptions}
-  placeholder={t("choose_a_reason_placeholder")}
-  className="w-full p-0"
-  panelClassName="rounded-md"
-  pt={{
-    root: {
-      className: `
+          <Dropdown
+            value={deleteReason}
+            onChange={(e: DropdownChangeEvent) => setDeleteReason?.(e.value)}
+            options={reasonOptions}
+            placeholder={t("choose_a_reason_placeholder")}
+            className="w-full p-0"
+            panelClassName="rounded-md"
+            pt={{
+              root: {
+                className: `
         w-full border border-gray-300 dark:border-transparent
         bg-white dark:bg-gray-800 
         text-gray-700 dark:text-gray-300 
         rounded-md 
-        focus:ring-2 focus:ring-[#5AC12F] focus:border-[#5AC12F]
+        focus:ring-2 focus:ring-[#b83330] focus:border-[#b83330]
       `,
-    },
-    input: {
-      className: `
+              },
+              input: {
+                className: `
         p-4 rounded-md 
         bg-white dark:bg-gray-800 
         text-gray-700 dark:text-gray-300 
         placeholder-gray-400 dark:placeholder-gray-500
         border-none
       `,
-    },
-    panel: {
-      className: `
+              },
+              panel: {
+                className: `
         rounded-md border-x border-b border-gray-200 dark:border-transparent
         bg-white dark:bg-gray-800 
         text-gray-700 dark:text-gray-300
       `,
-    },
-    item: {
-      className: `
+              },
+              item: {
+                className: `
         px-4 py-2 cursor-pointer 
         text-gray-700 dark:text-gray-300 
         hover:bg-gray-100 dark:hover:bg-gray-700 
         transition-colors duration-150
 
-        [&.p-highlight]:bg-[#5AC12F] [&.p-highlight]:text-white 
-        dark:[&.p-highlight]:bg-[#5AC12F] dark:[&.p-highlight]:text-white 
+        [&.p-highlight]:bg-[#b83330] [&.p-highlight]:text-white 
+        dark:[&.p-highlight]:bg-[#b83330] dark:[&.p-highlight]:text-white 
 
         [&.p-focus]:bg-gray-100 dark:[&.p-focus]:bg-gray-700
       `,
-    },
-  }}
-/>
+              },
+            }}
+          />
 
         </div>
 

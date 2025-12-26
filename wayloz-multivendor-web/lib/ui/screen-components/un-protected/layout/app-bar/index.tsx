@@ -63,11 +63,13 @@ import {
 } from "@/lib/utils/constants";
 import EmptySearch from "@/lib/ui/useable-components/empty-search-results";
 import { useLocale, useTranslations } from "next-intl";
+import { useTheme } from "@/lib/providers/ThemeProvider";
 import { TLocale } from "@/lib/utils/types/locale";
 import { setUserLocale } from "@/lib/utils/methods/locale";
 import { Dialog } from "primereact/dialog";
 
 import CustomButton from "@/lib/ui/useable-components/button";
+import { FiMoon, FiSun } from "react-icons/fi";
 
 const AppTopbar = ({ handleModalToggle }: IAppBarProps) => {
   // State for cart sidebar
@@ -83,6 +85,7 @@ const AppTopbar = ({ handleModalToggle }: IAppBarProps) => {
   // REf
   const menuRef = useRef<Menu>(null);
   const languageMenuRef = useRef<Menu>(null);
+  const { theme, toggleTheme } = useTheme();
 
   const [position, setPosition] = useState<"left" | "right">("right");
   useEffect(() => {
@@ -400,6 +403,8 @@ const AppTopbar = ({ handleModalToggle }: IAppBarProps) => {
                       <LocationSvg width={22} height={22} />
                     </div>
 
+
+
                     <span className="hidden md:inline text-xs sm:text-sm md:text-base text-primary-color font-inter font-normal leading-6 tracking-normal mr-2 truncate">
                       {fittedAddress(userAddress?.deliveryAddress)}
                     </span>
@@ -491,12 +496,15 @@ const AppTopbar = ({ handleModalToggle }: IAppBarProps) => {
                       </span>
                     )}
 
+
+
                     <FontAwesomeIcon
                       icon={faChevronDown}
                       width={12}
                       hanging={12}
                       color="var(--primary-color)"
                     />
+
                     <Menu
                       className="
                      dark:bg-gray-800
@@ -586,6 +594,16 @@ const AppTopbar = ({ handleModalToggle }: IAppBarProps) => {
                     />
                   </div>
                 )}
+                <div
+                  onClick={toggleTheme}
+                  className="text-black dark:text-white cursor-pointer"
+                >
+                  {theme === "dark" ? (
+                    <FiMoon className="w-5 h-5 text-yellow-400" />
+                  ) : (
+                    <FiSun className="w-5 h-5 text-orange-500" />
+                  )}
+                </div>
                 {/* Cart Button */}
                 <div className="p-1 cursor-pointer">
                   {cartCount > 0 && !isSearchFocused && (
@@ -634,7 +652,7 @@ const AppTopbar = ({ handleModalToggle }: IAppBarProps) => {
                         <CartSvg color="black" width={22} height={22} />
                       </div>
                       {cartCount > 0 && authToken && (
-                        <div className="absolute -top-1 -right-1 bg-black text-[#5AC12F] text-[10px] w-5 h-5 rounded-full flex items-center justify-center">
+                        <div className="absolute -top-1 -right-1 bg-black text-[#b83330] text-[10px] w-5 h-5 rounded-full flex items-center justify-center">
                           {cartCount}
                         </div>
                       )}
@@ -759,7 +777,7 @@ const AppTopbar = ({ handleModalToggle }: IAppBarProps) => {
             />
 
             <button
-              className="w-1/2 h-fit flex items-center justify-center gap-2 bg-[#5AC12F] text-white py-2 rounded-full text-sm font-medium"
+              className="w-1/2 h-fit flex items-center justify-center gap-2 bg-[#b83330] text-white py-2 rounded-full text-sm font-medium"
               onClick={onLogout}
             >
               <FontAwesomeIcon icon={faSignOutAlt} />

@@ -14,8 +14,11 @@ import TinyTiles from "../../useable-components/tinyTiles";
 import Couriers from "../../screen-components/un-protected/Home/ForCouriers";
 import { PaddingContainer } from "../../useable-components/containers";
 import { useTranslations } from "next-intl";
+import heavyLiftingImage from "@/public/assets/images/png/we-do-heavy-lifting.png";
+import becomeStoreOwnerImage from "@/public/assets/images/png/become-store.png";
 
-const Main = () => {  
+
+const Main = () => {
   const t = useTranslations("MiniCardsHomeScreen");
   return (
     <div className="w-screen dark:bg-gray-900">
@@ -30,7 +33,7 @@ const Main = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 my-[40px] gap-8">
             <TinyTiles
               image={
-                "https://images.ctfassets.net/23u853certza/6kRVPn5kxEnlkgCYUTozhL/7846cf51b410e633a8c30a021ec00bde/Restaurant.png?w=200&q=90&fm=webp"
+                heavyLiftingImage.src
               }
               heading={t('title5')}
               buttonText={t('subText5')}
@@ -39,7 +42,7 @@ const Main = () => {
             />
             <TinyTiles
               image={
-                "https://images.ctfassets.net/23u853certza/4arD8VZQybXkPfyJXchLat/7457eac1b8137a76b50ed70c20cc03b4/Store.png?w=200&q=90&fm=webp"
+                becomeStoreOwnerImage.src
               }
               heading={t('title6')}
               buttonText={t('subText6')}

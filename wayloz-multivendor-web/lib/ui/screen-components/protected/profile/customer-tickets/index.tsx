@@ -33,12 +33,12 @@ export default function CustomerTicketsMain() {
   const { showToast } = useToast();
   const [selectedTicket, setSelectedTicket] = useState<string | null>(null);
   const [isChatModalVisible, setIsChatModalVisible] = useState<boolean>(false);
-  
+
   // Get user profile data
   const { data: profileData, loading: profileLoading } = useQuery(GET_USER_PROFILE, {
     fetchPolicy: "cache-and-network",
   });
-  
+
   const userName = profileData?.profile?.name || "User";
   const userId = profileData?.profile?._id;
 
@@ -66,34 +66,34 @@ export default function CustomerTicketsMain() {
       }
     }
   );
-  
+
   // Get tickets from query result or default to empty array
   const tickets: ITicket[] = ticketsData?.getSingleUserSupportTickets?.tickets || [];
-  
+
   // Sort tickets by creation date (newest first)
   const sortedTickets = [...tickets].sort((a, b) => {
     const dateA = new Date(parseInt(a.updatedAt)).getTime();
     const dateB = new Date(parseInt(b.updatedAt)).getTime();
     return dateB - dateA; // Newest first
   });
-  
+
   // Format date for display
   const formatDate = (dateString: string) => {
     try {
       const date = new Date(parseInt(dateString));
-      return date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
       });
     } catch (error) {
       return "unknown date";
     }
   };
-  
+
   // Get status color based on ticket status
   const getStatusColor = (status: string) => {
-    switch(status.toLowerCase()) {
+    switch (status.toLowerCase()) {
       case 'open':
         return 'text-blue-600 bg-blue-100';
       case 'inprogress':
@@ -104,20 +104,20 @@ export default function CustomerTicketsMain() {
         return 'text-gray-600 bg-gray-100';
     }
   };
-  
+
   // Handle opening the chat modal
   const handleOpenChat = (ticketId: string) => {
     setSelectedTicket(ticketId);
     setIsChatModalVisible(true);
   };
-  
+
   // Handle closing the chat modal
   const handleCloseChat = () => {
     // Refetch tickets to get any updates when modal closes
     refetchTickets();
     setIsChatModalVisible(false);
   };
-  
+
   // Handle creating a new ticket
   const handleCreateTicket = () => {
     router.push('/profile/getHelp');
@@ -130,7 +130,7 @@ export default function CustomerTicketsMain() {
         refetchTickets();
       }
     }, 30000); // Refresh every 30 seconds when not in chat
-    
+
     return () => clearInterval(intervalId);
   }, [refetchTickets, isChatModalVisible]);
 
@@ -138,17 +138,17 @@ export default function CustomerTicketsMain() {
   if (isTicketsLoading || profileLoading) {
     return <TicketSkeleton count={3} />;
   }
-  
+
   // Show error state
   if (ticketsError) {
     return (
       <div className="bg-white p-6 rounded-lg shadow-sm text-center">
         <TextComponent text={t('error_loading_tickets')} className="text-lg text-red-500 mb-2" />
         <p className="text-gray-500 mb-4">{t('tickets_fetch_error_message')}</p>
-        <CustomButton 
+        <CustomButton
           label={t('retry_button')}
           onClick={() => window.location.reload()}
-          className="bg-[#5AC12F] text-white px-4 py-2 rounded-full"
+          className="bg-[#b83330] text-white px-4 py-2 rounded-full"
         />
       </div>
     );
@@ -157,7 +157,7 @@ export default function CustomerTicketsMain() {
   return (
     <div className="w-full mx-auto">
       <div className="mb-6">
-        <TextComponent 
+        <TextComponent
           text={`${t('welcome_user')} ${userName} 👋`}
           className="text-xl md:text-2xl font-bold mb-2 dark:text-white"
         />
@@ -165,7 +165,7 @@ export default function CustomerTicketsMain() {
           <TextComponent text={t("your_customer_support_tickets_label")} className="text-xl md:text-2xl font-semibold dark:text-gray-200" />
         </div>
       </div>
-      
+
       {sortedTickets.length > 0 ? (
         <div className="space-y-4">
           {sortedTickets.map((ticket) => (
@@ -176,8 +176,8 @@ export default function CustomerTicketsMain() {
                   <p className="text-sm text-gray-500 dark:text-gray-400">{t('ticket_id_label')} {ticket._id}</p>
                 </div>
                 <span className={`${getStatusColor(ticket.status)} px-3 py-1 rounded-full text-sm font-medium`}>
-                  {ticket.status === 'inProgress' ? t('in_progress_status_label') : 
-                   ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1)}
+                  {ticket.status === 'inProgress' ? t('in_progress_status_label') :
+                    ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1)}
                 </span>
               </div>
               <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
@@ -185,7 +185,7 @@ export default function CustomerTicketsMain() {
                 <p>{t('last_updated_label')} {formatDate(ticket.updatedAt)}</p>
               </div>
               <div className="mt-3 pt-3 border-t border-gray-100 dark:border-gray-700 flex justify-end">
-                <CustomButton 
+                <CustomButton
                   label={t("view_messages_button")}
                   className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300  bg-transparent"
                   onClick={() => handleOpenChat(ticket._id)}
@@ -198,14 +198,14 @@ export default function CustomerTicketsMain() {
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm text-center">
           <TextComponent text={t("no_tickets_found_label")} className="text-lg text-gray-500 dark:text-gray-400 mb-2" />
           <p className="text-gray-500 dark:text-gray-400 mb-4"> {t('no_support_tickets_yet_message')}</p>
-          <CustomButton 
+          <CustomButton
             label={t("create_first_ticket_button")}
             onClick={handleCreateTicket}
             className="bg-primary-color text-white px-4 py-2 rounded-full"
           />
         </div>
       )}
-      
+
       {/* Chat Modal */}
       {selectedTicket && (
         <TicketChatModal

@@ -19,9 +19,9 @@ export default function SaveEmailAddress({
 }: ISaveEmailAddressProps) {
   // Hooks
   const t = useTranslations();
-  const {showToast} = useToast();
-  const { setUser, user, sendOtpToEmailAddress, setIsAuthModalVisible, isLoading} = useAuth();
-  const {profile} = useUser();
+  const { showToast } = useToast();
+  const { setUser, user, sendOtpToEmailAddress, setIsAuthModalVisible, isLoading } = useAuth();
+  const { profile } = useUser();
 
   // Handlers
   const handleSubmit = async () => {
@@ -38,13 +38,13 @@ export default function SaveEmailAddress({
         await sendOtpToEmailAddress(user?.email);
         handleChangePanel(3);
         return;
-      } else{
+      } else {
         showToast({
-          type:"info",
+          type: "info",
           title: t("email_verification_label"),
-          message:t("your_email_already_verified_message")
+          message: t("your_email_already_verified_message")
         })
-        if(profile?.phoneIsVerified){
+        if (profile?.phoneIsVerified) {
           handleChangePanel(0);
           setIsAuthModalVisible(false)
           showToast({
@@ -52,10 +52,10 @@ export default function SaveEmailAddress({
             title: t("Login"),
             message: t("login_success_message"), // put ! at the end of the statement in the translation
           });
-        }else{
+        } else {
           handleChangePanel(4);
         }
-        
+
       }
     } catch (error) {
       console.error('An error occurred while saving email address:', error);
@@ -90,7 +90,7 @@ export default function SaveEmailAddress({
         label={t("continue_label")}
         loading={isLoading}
         onClick={handleSubmit}
-        className={`bg-[#5AC12F] flex items-center justify-center gap-x-4 px-3 rounded-full border border-gray-300 p-3 m-auto w-72`}
+        className={`bg-[#b83330] flex items-center justify-center gap-x-4 px-3 rounded-full border border-gray-300 p-3 m-auto w-72`}
       />
     </div>
   );

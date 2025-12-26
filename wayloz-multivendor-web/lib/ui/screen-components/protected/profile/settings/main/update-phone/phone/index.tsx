@@ -17,19 +17,19 @@ export interface IPhoneEntryProps {
 
 const PhoneEntry = ({ handleChange, handleSubmit, user, handleUpdatePhoneModal, userPhone }: IPhoneEntryProps) => {
   const [loading, setLoading] = useState(false);
-  const t= useTranslations()
+  const t = useTranslations()
 
   const handleSaveClick = async () => {
-   setLoading(true);
-   try {
-     await handleSubmit();
-   } catch (error) {
-     console.error('Save failed:', error);
-   } finally {
-     setLoading(false);
-   }
- };
- console.log('user phone:', user?.phone);
+    setLoading(true);
+    try {
+      await handleSubmit();
+    } catch (error) {
+      console.error('Save failed:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  console.log('user phone:', user?.phone);
   return (
     <div className="flex flex-col justify-between px-4 w-full items-center dark:bg-gray-900 dark:text-white">
       <div className="flex items-center justify-center">
@@ -65,9 +65,8 @@ const PhoneEntry = ({ handleChange, handleSubmit, user, handleUpdatePhoneModal, 
           onClick={handleSaveClick}
           disabled={loading}
           aria-label={loading ? t("update_phone_name_saving_aria") : t("update_phone_name_save_aria")}
-          className={`bg-[#5AC12F] text-white flex items-center justify-center rounded-full p-2 sm:p-3 w-full md:w-[268px] mb-4 text-sm sm:text-lg font-medium ${
-            loading ? "opacity-70 cursor-not-allowed" : ""
-          }`}
+          className={`bg-[#b83330] text-white flex items-center justify-center rounded-full p-2 sm:p-3 w-full md:w-[268px] mb-4 text-sm sm:text-lg font-medium ${loading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
         >
           {loading ? (
             <FontAwesomeIcon icon={faSpinner} spin className="text-white text-lg" />

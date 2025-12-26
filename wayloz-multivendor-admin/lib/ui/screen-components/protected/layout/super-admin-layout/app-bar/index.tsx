@@ -309,11 +309,10 @@ const AppTopbar = () => {
                   notifications?.map((notification, index) => (
                     <Link
                       key={index}
-                      className={`p-2 mx-3 rounded-md text-sm cursor-pointer ${
-                        notification.read
-                          ? 'text-black'
-                          : 'text-[#484848] bg-[#d8e3a369]'
-                      } hover:bg-gray-300`}
+                      className={`p-2 mx-3 rounded-md text-sm cursor-pointer ${notification.read
+                        ? 'text-black'
+                        : 'text-[#484848] bg-[#d8e3a369]'
+                        } hover:bg-gray-300`}
                       href={`${notification.navigateTo}`}
                       onClick={() => {
                         markAllAsRead();
@@ -388,7 +387,7 @@ const AppTopbar = () => {
             />
           </div>
         </div>
-      </div>
+      </div >
 
       <div className="flex md:hidden space-x-3">
         <div
@@ -419,45 +418,47 @@ const AppTopbar = () => {
         </button>
       </div>
 
-      {isMenuOpen && (
-        <div
-          className="absolute right-4 top-8 z-50 rounded-lg bg-white p-4 shadow-lg"
-          ref={containerRef}
-        >
-          <div className="flex flex-col items-center space-y-4">
-            {shouldShow('Notification') && (
-              <FontAwesomeIcon
-                icon={faBell}
-                color="gray"
-                onClick={() => onRedirectToPage('/management/notifications')}
-              />
-            )}
-            {shouldShow('Zone') && (
+      {
+        isMenuOpen && (
+          <div
+            className="absolute right-4 top-8 z-50 rounded-lg bg-white p-4 shadow-lg"
+            ref={containerRef}
+          >
+            <div className="flex flex-col items-center space-y-4">
+              {shouldShow('Notification') && (
+                <FontAwesomeIcon
+                  icon={faBell}
+                  color="gray"
+                  onClick={() => onRedirectToPage('/management/notifications')}
+                />
+              )}
+              {shouldShow('Zone') && (
+                <TextIconClickable
+                  className="justify-between"
+                  icon={faMap}
+                  onClick={() => onRedirectToPage('/zone')}
+                />
+              )}
+              {shouldShow('Dispatch') && (
+                <TextIconClickable
+                  className="justify-between"
+                  icon={faTruck}
+                  onClick={() => onRedirectToPage('/dispatch')}
+                />
+              )}
+              {/* <TextIconClickable className="justify-between" icon={faCog} /> */}
+              {/* <TextIconClickable className="justify-between" icon={faGlobe} /> */}
               <TextIconClickable
-                className="justify-between"
-                icon={faMap}
-                onClick={() => onRedirectToPage('/zone')}
+                className="cursor-pointer"
+                icon={faRightFromBracket}
+                onClick={() => {
+                  setLogoutModalVisible(true);
+                }}
               />
-            )}
-            {shouldShow('Dispatch') && (
-              <TextIconClickable
-                className="justify-between"
-                icon={faTruck}
-                onClick={() => onRedirectToPage('/dispatch')}
-              />
-            )}
-            {/* <TextIconClickable className="justify-between" icon={faCog} /> */}
-            {/* <TextIconClickable className="justify-between" icon={faGlobe} /> */}
-            <TextIconClickable
-              className="cursor-pointer"
-              icon={faRightFromBracket}
-              onClick={() => {
-                setLogoutModalVisible(true);
-              }}
-            />
+            </div>
           </div>
-        </div>
-      )}
+        )
+      }
       <CustomDialog
         title={t('Logout Confirmation')}
         message={t('Are you sure you want to logout?')}
@@ -470,7 +471,7 @@ const AppTopbar = () => {
           secondaryButtonProp: { label: t('Cancel'), icon: 'pi pi-times' },
         }}
       />
-    </div>
+    </div >
   );
 };
 

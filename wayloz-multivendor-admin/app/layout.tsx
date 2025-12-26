@@ -6,7 +6,7 @@ import Script from 'next/script';
 export const metadata = {
   title: 'Wayloz Admin Dashboard',
   icons: {
-    icon: '/favicon.png',
+    icon: '/wayloz-favicon.png',
     // You can add more like:
     // shortcut: "/favicon.png",
     // apple: "/apple-touch-icon.png"
@@ -23,7 +23,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-       <head>
+      <head>
         {/* Microsoft Clarity */}
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`

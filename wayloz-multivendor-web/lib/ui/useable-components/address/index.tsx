@@ -163,7 +163,7 @@ export default function UserAddressComponent(
     setInputValue(editAddress?.deliveryAddress || "");
     setSelectedCity(
       cities_dropdown?.find((city) => city.label === editAddress?.details) ||
-        null
+      null
     );
     paginate(1);
   };
@@ -555,7 +555,7 @@ export default function UserAddressComponent(
           <span> {t("add_new_address_button")}</span>
         </button>
         <button
-          className={` ${confirmYourAddress ? "block" : "hidden"} w-[90%] h-fit bg-primary-color text-gray-900 py-2 rounded-full text-base lg:text-[14px] mt-4`}
+          className={` ${confirmYourAddress ? "block" : "hidden"} w-[90%] h-fit bg-primary-color text-white py-2 rounded-full text-base lg:text-[14px] mt-4`}
           onClick={() => onHide()}
         >
           <span> {t("confirm")}</span>
@@ -779,7 +779,7 @@ export default function UserAddressComponent(
               lng: Number(editAddress?.location?.coordinates[0]) || 0,
             }}
             zoom={13}
-            onCenterChanged={() => {}}
+            onCenterChanged={() => { }}
           >
             {editAddress?.location?.coordinates && (
               <Marker

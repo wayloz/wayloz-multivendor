@@ -27,7 +27,7 @@ export default function LoginWithGoogle({
   return (
     <div className="w-full h-full flex flex-col items-center justify-center px-2 py-6 md:px-8 dark:text-white dark:bg-gray-900">
       {/* Header Text */}
-      
+
       <div className="flex flex-col gap-y-2 text-center w-full mb-6">
 
         <h3 className="text-2xl md:text-3xl font-semibold text-black dark:text-white">
@@ -60,7 +60,7 @@ export default function LoginWithGoogle({
       <div className="w-full max-w-sm mb-4">
         <CustomButton
           label={t("login")}
-          className="bg-[#5AC12F] hover:bg-[#54ad2e]  text-white dark:text-gray-100 w-full py-3 rounded-full border border-gray-300 dark:border-gray-600 flex justify-center items-center"
+          className="bg-[#b83330] hover:bg-[#c94a45] text-white dark:text-gray-100 w-full py-3 rounded-full border border-gray-300 dark:border-gray-600 flex justify-center items-center"
           onClick={() => handleChangePanel(1)}
         />
       </div>
@@ -83,7 +83,7 @@ export default function LoginWithGoogle({
           className="font-bold text-black dark:text-gray-300 underline hover:text-gray-700"
         >
           {t("terms_label")}{" "}
-        {t("and_conditions_and_message")}&nbsp;
+          {t("and_conditions_and_message")}&nbsp;
         </Link>
         {t("and_labed")}{" "}
         <Link

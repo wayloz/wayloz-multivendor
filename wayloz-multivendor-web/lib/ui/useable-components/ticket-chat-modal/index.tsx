@@ -24,9 +24,9 @@ export default function TicketChatModal({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [message, setMessage] = useState<string>("");
   const [isSending, setIsSending] = useState<boolean>(false);
-  
+
   // Create a polling interval reference
-const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Fetch single ticket details
   const { data: ticketData, loading: ticketLoading } = useQuery(
@@ -84,10 +84,10 @@ const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     if (visible && ticketId) {
       // Immediate fetch to get fresh data
       refetch();
-      
+
       // Start polling for messages every 3 seconds
       startPolling(3000);
-      
+
       // Additional interval as backup for polling
       pollingIntervalRef.current = setInterval(() => {
         refetch();
@@ -95,13 +95,13 @@ const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     } else {
       // Stop polling when modal is closed
       stopPolling();
-      
+
       if (pollingIntervalRef.current) {
         clearInterval(pollingIntervalRef.current);
         pollingIntervalRef.current = null;
       }
     }
-    
+
     // Cleanup on unmount
     return () => {
       stopPolling();
@@ -123,19 +123,19 @@ const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const formatTimestamp = (timestamp: string) => {
     try {
       const date = new Date(parseInt(timestamp));
-      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + 
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) +
         ' ' + date.toLocaleDateString();
     } catch (error) {
       return "unknown time";
     }
   };
-  
+
   // Handle sending a message
   const handleSendMessage = () => {
     if (!message.trim() || isSending) return;
-    
+
     setIsSending(true);
-    
+
     sendMessage({
       variables: {
         messageInput: {
@@ -145,7 +145,7 @@ const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
       }
     });
   };
-  
+
   // Handle enter key for sending message
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -161,16 +161,16 @@ const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Get ticket title
   const getTicketTitle = () => {
     if (!ticket) return "Support Chat";
-    
+
     if (ticket.category === "order related" && ticket.orderId) {
       return `Order Issue - ${ticket.orderId}`;
     }
-    
+
     return ticket.title;
   };
 
-   // get the RTL direction
-   const direction = document.documentElement.getAttribute("dir") || "ltr";
+  // get the RTL direction
+  const direction = document.documentElement.getAttribute("dir") || "ltr";
 
   return (
     <Dialog
@@ -201,22 +201,21 @@ const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
             <h3 className="font-medium">{getTicketTitle()}</h3>
             <div className="flex items-center gap-2">
               <span
-                className={`text-xs ${
-                  ticket?.status === "open"
+                className={`text-xs ${ticket?.status === "open"
                     ? "text-blue-300"
                     : ticket?.status === "inProgress"
                       ? "text-yellow-300"
                       : "text-gray-300"
-                }`}
+                  }`}
               >
                 {ticket?.status === "inProgress"
                   ? "In Progress"
                   : ticket?.status?.charAt(0).toUpperCase() +
-                    ticket?.status?.slice(1)}
+                  ticket?.status?.slice(1)}
               </span>
             </div>
           </div>
-          <button 
+          <button
             onClick={() => {
               // Stop polling before closing
               stopPolling();
@@ -225,7 +224,7 @@ const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
                 pollingIntervalRef.current = null;
               }
               onHide();
-            }} 
+            }}
             className="text-white hover:text-gray-300"
           >
             <span className="sr-only">Close</span>✕
@@ -261,17 +260,16 @@ const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
                 if (msg.content.trim() === ticketData?.getSingleSupportTicket?.description?.trim()) {
                   return null;
                 }
-                
+
                 // User's own messages are green and on right, admin messages are gray on left
                 const isUserMessage = msg.senderType === "user";
                 return (
                   <div
                     key={msg._id}
-                    className={`rounded-lg p-3 max-w-[80%] ${
-                      isUserMessage
-                        ? "bg-green-500 text-white ml-auto" 
+                    className={`rounded-lg p-3 max-w-[80%] ${isUserMessage
+                        ? "bg-green-500 text-white ml-auto"
                         : "bg-gray-100 text-gray-800 mr-auto"
-                    }`}
+                      }`}
                   >
                     <p className="break-words">{msg.content}</p>
                     <div className="text-xs mt-1 text-right">
@@ -304,18 +302,17 @@ const pollingIntervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={handleKeyPress}
                 placeholder="Type your message here..."
-                className="flex-1 p-3 border dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#5AC12F] resize-none"
+                className="flex-1 p-3 border dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-[#b83330] resize-none"
                 rows={2}
                 disabled={isSending}
               />
               <button
                 onClick={handleSendMessage}
                 disabled={!message.trim() || isSending}
-                className={`bg-green-500 ${direction === "rtl" ? "rounded-l-md" : "rounded-r-md"} p-2 text-white flex items-center justify-center ${
-                  !message.trim() || isSending
+                className={`bg-green-500 ${direction === "rtl" ? "rounded-l-md" : "rounded-r-md"} p-2 text-white flex items-center justify-center ${!message.trim() || isSending
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-green-600"
-                }`}
+                  }`}
               >
                 {direction === "rtl" ? (
                   isSending ? (
