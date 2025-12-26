@@ -152,16 +152,15 @@ export default function StoreDetailsScreen() {
         onClick={() => handleScroll(_url ?? "", true)}
       >
         <span
-          className={`mx-2 ${item.items && "font-semibold"} text-${
-            isClicked ? "[#5AC12F]" : "gray-600"
-          }
-            dark:text-${isClicked ? "[#5AC12F]" : "gray-300"}`}
+          className={`mx-2 ${item.items && "font-semibold"} text-${isClicked ? "[#b83330]" : "gray-600"
+            }
+            dark:text-${isClicked ? "[#b83330]" : "gray-300"}`}
         >
           {item.label}
         </span>
         {/* <span
           className={`mx-2 ${item.items && "font-semibold"} text-${
-            isClicked ? "[#5AC12F]" : "gray-100"
+            isClicked ? "[#b83330]" : "gray-100"
           }`}
         >
           {item.label}
@@ -190,9 +189,8 @@ export default function StoreDetailsScreen() {
         onClick={() => handleScroll(_url ?? "", true)}
       >
         <span
-          className={`mx-2 ${item.items && "font-semibold"} text-${
-            isClicked ? "secondary-color" : "gray-600"
-          }
+          className={`mx-2 ${item.items && "font-semibold"} text-${isClicked ? "secondary-color" : "gray-600"
+            }
           dark:text-${isClicked ? "primary-color" : "gray-300"}`}
         >
           {item.label}
@@ -229,17 +227,17 @@ export default function StoreDetailsScreen() {
 
               return foods.length > 0
                 ? {
-                    _id: subCat._id,
-                    title: subCat.title,
-                    foods,
-                  }
+                  _id: subCat._id,
+                  title: subCat.title,
+                  foods,
+                }
                 : null;
             })
             .filter(Boolean) as {
-            _id: string;
-            title: string;
-            foods: IFood[];
-          }[];
+              _id: string;
+              title: string;
+              foods: IFood[];
+            }[];
 
           if (groupedFoods["uncategorized"]?.length > 0) {
             subCategoryGroups.push({
@@ -509,6 +507,7 @@ export default function StoreDetailsScreen() {
     _id: data?.restaurant?._id ?? "",
     name: data?.restaurant?.name ?? "...",
     image: data?.restaurant?.image ?? "",
+    logo: data?.restaurant?.logo ?? "",
     reviewData: data?.restaurant?.reviewData ?? {},
     address: data?.restaurant?.address ?? "",
     deliveryCharges: data?.restaurant?.deliveryCharges ?? "",
@@ -658,8 +657,9 @@ export default function StoreDetailsScreen() {
             className={`${direction === "rtl" ? "right-0 md:right-20" : "left-0 md:left-20"} absolute bottom-0  p-4`}
           >
             <div className="flex flex-col items-start">
+              {/* image repetation issue bug */}
               <Image
-                src={restaurantInfo.image}
+                src={restaurantInfo.logo}
                 alt={`${restaurantInfo.name} logo`}
                 width={50}
                 height={50}
@@ -785,15 +785,13 @@ export default function StoreDetailsScreen() {
                     return (
                       <li key={index} className="shrink-0">
                         <button
-                          className={`bg-${
-                            selectedCategory === _slug
-                              ? "secondary-color"
-                              : "gray-100"
-                          } text-${
-                            selectedCategory === _slug
+                          className={`bg-${selectedCategory === _slug
+                            ? "secondary-color"
+                            : "gray-100"
+                            } text-${selectedCategory === _slug
                               ? "var(--primary-color)"
                               : "gray-600"
-                          } rounded-full px-3 py-2 text-[10px] sm:text-sm md:text-base font-medium whitespace-nowrap`}
+                            } rounded-full px-3 py-2 text-[10px] sm:text-sm md:text-base font-medium whitespace-nowrap`}
                           onClick={() => handleScroll(_slug, true, 100)}
                         >
                           {category.label}
@@ -819,15 +817,13 @@ export default function StoreDetailsScreen() {
                       return (
                         <li key={index} className="shrink-0">
                           <button
-                            className={`bg-${
-                              selectedSubCategory === _slug
-                                ? "var(--primary-color)"
-                                : "gray-100"
-                            } text-${
-                              selectedSubCategory === _slug
+                            className={`bg-${selectedSubCategory === _slug
+                              ? "var(--primary-color)"
+                              : "gray-100"
+                              } text-${selectedSubCategory === _slug
                                 ? "var(--primary-color) "
                                 : "gray-600"
-                            } rounded-full px-3 py-2 text-[10px] sm:text-sm md:text-base font-medium whitespace-nowrap`}
+                              } rounded-full px-3 py-2 text-[10px] sm:text-sm md:text-base font-medium whitespace-nowrap`}
                             onClick={() => handleScroll(_slug, false, 170)}
                           >
                             {sub_category.label}
@@ -854,11 +850,10 @@ export default function StoreDetailsScreen() {
             <div className="hidden md:block md:w-1/5 p-3 h-screen z-10  sticky top-14 left-0">
               <div className="h-full overflow-hidden group">
                 <div
-                  className={`h-full overflow-y-auto transition-all duration-300 ${
-                    isScrolling
-                      ? "scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent dark:scrollbar-thumb-gray-600"
-                      : "overflow-hidden"
-                  }`}
+                  className={`h-full overflow-y-auto transition-all duration-300 ${isScrolling
+                    ? "scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent dark:scrollbar-thumb-gray-600"
+                    : "overflow-hidden"
+                    }`}
                   onScroll={handleMouseEnterCategoryPanel}
                 >
                   <PanelMenu
@@ -943,11 +938,10 @@ export default function StoreDetailsScreen() {
                                 className={`${direction === "rtl" ? "left-2" : "right-2"} absolute top-2`}
                               >
                                 <button
-                                  className={`rounded-full shadow-md w-6 h-6 flex items-center justify-center ${
-                                    meal.isOutOfStock
-                                      ? "bg-gray-400 dark:bg-gray-600"
-                                      : "bg-[#0EA5E9] dark:bg-sky-600"
-                                  }`}
+                                  className={`rounded-full shadow-md w-6 h-6 flex items-center justify-center ${meal.isOutOfStock
+                                    ? "bg-gray-400 dark:bg-gray-600"
+                                    : "bg-[#0EA5E9] dark:bg-sky-600"
+                                    }`}
                                   onClick={() => handleOpenFoodModal(meal)}
                                   type="button"
                                 >

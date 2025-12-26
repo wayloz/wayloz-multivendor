@@ -119,7 +119,7 @@ const VerificationEmailForChangePassword = ({
         if (otp.join("").length !== 6 || !otpResponse?.data?.verifyOtp) {
           return showToast({
             type: "error",
-            title:t("toast_error"),
+            title: t("toast_error"),
             message: t("update_phone_name_otp_error_msg"),
           });
         } else {
@@ -151,21 +151,21 @@ const VerificationEmailForChangePassword = ({
     <div className="flex flex-col items-start justify-start w-full h-full px-4 py-6 md:px-8 dark:bg-gray-900 dark:text-white ">
       <div className="flex flex-col justify-items-start justify-start text-left">
         <div className="mb-4">
-          <EmailIcon  darkColor="#ffffff" />
+          <EmailIcon darkColor="#ffffff" />
         </div>
 
         <h2 className="text-xl md:text-2xl font-bold text-gray-800 dark:text-white mb-2">
-        {t("OTP_Code_Sent")}
-          
+          {t("OTP_Code_Sent")}
+
         </h2>
 
         <p className="text-md sm:text-xl font-semibold text-gray-800 dark:text-white mb-3 break-words">
-          {formData?.email || t("your@email.com") }
+          {formData?.email || t("your@email.com")}
         </p>
 
         <p className="text-base text-gray-600 dark:text-gray-400  mb-6">
-        {t("verify_your_email_label")}
-          </p>
+          {t("verify_your_email_label")}
+        </p>
       </div>
       <div className="w-full mb-6">
         <div className="flex justify-center flex-wrap gap-2">
@@ -182,7 +182,7 @@ const VerificationEmailForChangePassword = ({
               onChange={(e) => handleChange(e, index)}
               onKeyDown={(e) => handleKeyDown(e, index)}
               onPaste={index === 0 ? handlePaste : undefined}
-              className="w-10 h-12 sm:w-12 sm:h-14 md:w-14 md:h-16 text-xl text-center border dark:bg-gray-800 border-gray-300 rounded-lg focus:outline-none focus:border-[#5AC12F] focus:ring-2 focus:ring-[#5AC12F] focus:ring-opacity-20"
+              className="w-10 h-12 sm:w-12 sm:h-14 md:w-14 md:h-16 text-xl text-center border dark:bg-gray-800 border-gray-300 rounded-lg focus:outline-none focus:border-[#b83330] focus:ring-2 focus:ring-[#b83330] focus:ring-opacity-20"
               autoFocus={index === 0}
             />
           ))}
@@ -190,13 +190,13 @@ const VerificationEmailForChangePassword = ({
       </div>
 
       <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 text-center">
-      {t("otp_valid_for_10_minutes_label")}
-        
+        {t("otp_valid_for_10_minutes_label")}
+
       </p>
 
       <CustomButton
         label={t("continue_label")}
-        className="bg-[#5AC12F] text-white flex items-center justify-center rounded-full p-3 w-full mb-4 h-12 sm:h-14 text-lg sm:text-md font-medium"
+        className="bg-[#b83330] text-white flex items-center justify-center rounded-full p-3 w-full mb-4 h-12 sm:h-14 text-lg sm:text-md font-medium"
         onClick={handleSubmit}
       />
 
