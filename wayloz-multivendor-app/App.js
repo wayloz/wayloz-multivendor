@@ -87,21 +87,17 @@ export default function App() {
   // For Fonts, etc
   useEffect(() => {
     const loadAppData = async () => {
-      // try {
-      //   await SplashScreen.preventAutoHideAsync()
-      // } catch (e) {
-      //   console.warn(e)
-      // }
-      // await i18n.initAsync()
+      try {
+        await SplashScreen.preventAutoHideAsync()
+      } catch (e) {
+        console.warn(e)
+      }
       await Font.loadAsync({
         MuseoSans300: require('./src/assets/font/MuseoSans/MuseoSans300.ttf'),
         MuseoSans500: require('./src/assets/font/MuseoSans/MuseoSans500.ttf'),
         MuseoSans700: require('./src/assets/font/MuseoSans/MuseoSans700.ttf')
       })
-      // await permissionForPushNotificationsAsync()
       await getActiveLocation()
-      // get stored theme
-      // await getStoredTheme()
       setAppIsReady(true)
     }
 

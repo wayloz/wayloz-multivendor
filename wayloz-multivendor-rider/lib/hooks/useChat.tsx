@@ -88,12 +88,12 @@ export const useChatScreen = () => {
   useEffect(() => {
     if (chatData) {
       setMessages(
-        chatData?.chat?.map((message: IMessage) => ({
-          _id: message?.id ?? "",
+        chatData?.chat?.map((message: IMessage, index: number) => ({
+          _id: message?.id || `message-${index}-${Date.now()}`,
           text: message?.message ?? "",
           createdAt: message.createdAt,
           user: {
-            _id: message.user.id ?? "",
+            _id: message.user.id || `user-${index}`,
             name: message.user.name,
           },
         })),
